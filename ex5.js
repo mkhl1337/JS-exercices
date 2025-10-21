@@ -1,36 +1,29 @@
-class Etudiant {
-  constructor(n, p, a) {
-    this.n = n;
-    this.p = p;
-    this.a = a;
+const randomNombre = function () {
+  let nombreGenere = Math.floor(Math.random() * 100);
+  let tentatives=1;
+  let nombre = Number(prompt(`Deviner le nombre genere pour la ${tentatives} fois `));
+  let trouver=false;
+  while (nombre !==nombreGenere && tentatives<10){
+    tentatives++;
+    if (nombre>nombreGenere){
+      
+      alert(`Plus petit que ${nombre}!`)
+      nombre=Number(prompt(`Deviner le nombre genere pour la ${tentatives} fois ! `));
+      
+    } else if(nombre<nombreGenere){
+      alert(`Plus grand que ${nombre}!`)
+      nombre=Number(prompt(`Deviner le nombre genere pour la ${tentatives} fois ! `));
+     
+    } 
   }
-  afficherEtudiant() {
-    console.log(
-      "l'etudiant ",
-      this.n.charAt(0).toUpperCase() + this.n.slice(1),
-      "  ",
-      this.p.charAt(0).toUpperCase() + this.p.slice(1),
-      " et son age est",
-      this.a
-    );
+  if (nombre===nombreGenere){
+    trouver=true;
   }
-}
-
-const E = new Etudiant("Lourimi", "Khalil", 29);
-E.afficherEtudiant();
-
-const Etud = {
-  nom: "Lourimi",
-  prenom: "Khalil",
-  age: 29,
-  dateNaissance: "12/04/2025",
+  if (trouver){
+    alert(`Victoire avec ${tentatives} tentative(s)!`);}
+    else{
+      alert(`Defaite et le nombre genere est ${nombreGenere}`);
+    }
+  
 };
-
-console.log(Etud.nom);
-
-const Etud1clone = Etud;
-console.log(Object.values(Etud1clone));
-delete Etud1clone.age;
-console.log(Object.values(Etud1clone));
-
-console.log(Etud1clone.hasOwnProperty("nom"));
+randomNombre();
