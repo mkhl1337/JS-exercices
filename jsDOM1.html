@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Paragraphes dans la console</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Ceci est le premier paragraphe.</p>
+    <p>Voici le deuxième paragraphe.</p>
+    <p>Ceci est le troisième paragraphe.</p>
+
+    <button onclick="afficherParagraphes()">Afficher dans la console</button>
+<script >
+
+    function afficherParagraphes(){
+
+        const selectAllP = document.getElementsByTagName('p');
+        for (let i=0; i<selectAllP.length;i++)
+    {
+        console.log(`Paragraphe numero ${i+1} : ${selectAllP[i].textContent} \n`);
+    }
+    }
+</script>
+  </body>
+</html>

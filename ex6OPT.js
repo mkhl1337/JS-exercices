@@ -2,7 +2,6 @@ function listeMenu() {
   let listeArticles = [];
   let reponse_Continue = "y";
 
-  
   while (reponse_Continue != "n") {
     let choix = Number(
       prompt(`----------------------------
@@ -17,7 +16,7 @@ function listeMenu() {
   
   Donner votre choix`)
     );
-  
+
     switch (choix) {
       case 1:
         // let nomArticle = prompt(
@@ -83,7 +82,7 @@ function listeMenu() {
         if (numeroArticle >= 1 && numeroArticle <= listeArticles.length) {
           listeArticles.pop(numeroArticle - 1);
           alert(
-            `🗑️ L'article "${listeArticles[numeroArticle - 1]}" a été supprimé.`
+            ` L'article "${listeArticles[numeroArticle - 1]}" a été supprimé.`
           );
         } else {
           alert(" Numéro invalide !");
@@ -91,12 +90,14 @@ function listeMenu() {
         break;
 
       case 4:
-        const quitter = prompt("Voulez-vous vraiment quitter ? (y/n)").toLowerCase();
+        const quitter = prompt(
+          "Voulez-vous vraiment quitter ? (y/n)"
+        ).toLowerCase();
         if (quitter === "y") {
           alert(" Au revoir et à très bientôt !");
-          return; 
+          return;
         } else if (quitter === "n") {
-          continue; 
+          continue;
         } else {
           alert(" Vous devez taper y ou n !");
         }
@@ -105,7 +106,6 @@ function listeMenu() {
         alert(
           `Choix invalide, vous avez choisi ${choix} alors qu'il doit etre entre 1 et 4`
         );
-       
     }
     reponse_Continue = prompt("Voulez-vous continuer ? (y/n)").toLowerCase();
     if (reponse_Continue === "n") {
@@ -115,9 +115,6 @@ function listeMenu() {
       alert(" Vous devez taper y ou n !");
       reponse_Continue = "y";
     }
-
-
-
   }
 }
 
