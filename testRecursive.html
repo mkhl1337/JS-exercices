@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test recursive</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding-top: 80px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-color: #9aa38c;
+    }
+
+    .input-wrapper {
+      position: relative;
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      background-color: white;
+      transition: border-color 0.3s ease;
+    }
+
+    label {
+      position: absolute;
+      top: 14px;
+      left: 16px; 
+      color: #777;
+      font-size: 16px;
+      background-color: white;
+      padding: 0 6px;
+      pointer-events: none;
+      transition: 0.2s ease all;
+      z-index: 5; 
+    }
+
+    input:hover,
+    input:focus {
+      border-color: #ff6720;
+    }
+
+    input:hover + label,
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      top: -8px;
+      left: 20px;
+      font-size: 13px;
+      color: #054f61;
+    }
+
+    input:invalid {
+      border: 2px solid red;
+      background-color: #ffe5e5;
+    }
+
+    input:valid {
+      border: 2px solid green;
+    }
+
+    button {
+      font-weight: bold;
+      background-color: rgb(255, 103, 32);
+      border-radius: 10px;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: rgb(104, 245, 111);
+      transform: scale(1.1);
+    }
+    button:active{
+      background-color:red;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculate Factorial</h1>
+
+  <div class="input-wrapper">
+    <input type="text" id="nb" placeholder=" " />
+    <label for="nb">Please type in your number</label>
+    <button id="b">Calculate!</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const n = document.getElementById("nb");
+    const b = document.getElementById("b");
+    const result = document.getElementById("result");
+
+
+    n.addEventListener("input", validateInput);
+    n.addEventListener("mouseleave", validateInput);
+
+    function validateInput() {
+      const trimmed = n.value.trim();
+      if (trimmed === "" || isNaN(trimmed) || Number(trimmed) < 0) {
+        n.setCustomValidity("⚠️ You must enter a valid positive number!");
+        n.reportValidity();
+        n.style.borderColor = "red";
+        return false;
+      } else {
+        n.setCustomValidity("");
+        n.style.borderColor = "green";
+        return true;
+      }
+    }
+
+    
+    function factCalc(x) {
+      x = parseInt(x);
+      if (x === 0 || x === 1) return 1;
+      return x * factCalc(x - 1);
+    }
+
+    
+    b.addEventListener("click", () => {
+      if (!validateInput()) return;
+      const val = parseInt(n.value.trim());
+      b.textContent = ` The factorial of ${val} is ${factCalc(val)}.`;
+    });
+    
+  </script>
+</body>
+</html>
